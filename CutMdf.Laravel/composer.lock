@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa322c53454393ed775cfe4807d54a50",
+    "content-hash": "f5b1371058b6796eb37cd41464fbb936",
     "packages": [
         {
             "name": "brick/math",
@@ -2301,6 +2301,53 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "padam87/bin-packer",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Padam87/bin-packer.git",
+                "reference": "274e95a56005007cf9af014d9ed9da9eaa265e8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Padam87/bin-packer/zipball/274e95a56005007cf9af014d9ed9da9eaa265e8b",
+                "reference": "274e95a56005007cf9af014d9ed9da9eaa265e8b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "ext-imagick": "*",
+                "phpunit/phpunit": "^8.1"
+            },
+            "suggest": {
+                "ext-imagick": "To use the visualizer and GIF maker"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Padam87\\BinPacker\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Prager",
+                    "email": "prager.adam87@gmail.com"
+                }
+            ],
+            "description": "2D bin packing for PHP",
+            "support": {
+                "issues": "https://github.com/Padam87/bin-packer/issues",
+                "source": "https://github.com/Padam87/bin-packer/tree/v0.1.1"
+            },
+            "time": "2022-04-11T17:30:06+00:00"
         },
         {
             "name": "phpoption/phpoption",
