@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Padam87\BinPacker\BinPacker;
 use Padam87\BinPacker\Model\Bin;
 use Padam87\BinPacker\Model\Block;
+use Padam87\BinPacker\Visualizer;
 
 //https://github.com/Padam87/bin-packer
 class PackagingController extends Controller
@@ -25,34 +26,34 @@ class PackagingController extends Controller
         $packer = new BinPacker();
 
         $blocks = $packer->pack($bin, $blocks);
-  
-        $Result = [];
-        foreach ($blocks as $b) {
-            $objClass = new \ReflectionClass($b);
 
-            $classProperties = $objClass->getProperties();
-
-            foreach ($classProperties as $propertie) {
-                $propertie->setAccessible(true);
-                $arrayForJSON[$propertie->getName()] = $propertie->getValue($b);
-            } 
-            array_push($Result, $arrayForJSON);
-        }
-
-
-
-        return response()->json($Result);
+        return response()->json($this->getJsonData($blocks));
     }
 
-    function getJsonData($b){
-        $var = get_object_vars($b);
-        foreach ($var as &$value) {
-            if (is_object($value) && method_exists($value,'getJsonData')) {
-                $value = $value->getJsonData();
+    function getJsonData($blocks)
+    {
+        $result = [];
+        /** @var Block $block */
+        foreach ($blocks as $block) {
+            $node = $block->getNode();
+
+            if ($node == null || !$node->isUsed()) {
+                continue;
             }
+
+            array_push($result, [
+                'x' => $node->getX(),
+                'y' => $node->getY(),
+                'width' => $node->getX() + $block->getWidth(),
+                'height' => $node->getY() + $block->getHeight(),
+                'rotatable' => $block->isRotatable(),
+                'id' => $block->getId(),
+                'used' => $node->isUsed()
+            ]);
+            //  $draw->annotation($node->getX() + 10, $node->getY() + 20, $block->getId());
+            //  $draw->annotation($node->getX() + 10, $node->getY() + 40, sprintf('%s x %s', $block->getWidth(), $block->getHeight()));
         }
-        return $var;
+
+        return $result;
     }
-
-
 }
