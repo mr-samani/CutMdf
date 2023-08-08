@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { PackingRoutingModule } from './packing-routing.module';
 import { PackingComponent } from './packing/packing.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { PackingService } from './packing/paking.service';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,11 @@ import { PackingComponent } from './packing/packing.component';
   ],
   imports: [
     CommonModule,
-    PackingRoutingModule
+    PackingRoutingModule,
+    HttpClientModule
+  ],
+  providers: [
+    PackingService
   ]
 })
 export class PackingModule { }

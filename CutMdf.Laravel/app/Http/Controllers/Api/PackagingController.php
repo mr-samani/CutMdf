@@ -26,7 +26,7 @@ class PackagingController extends Controller
         $packer = new BinPacker();
 
         $blocks = $packer->pack($bin, $blocks);
-
+//dd($blocks);
         return response()->json($this->getJsonData($blocks));
     }
 
@@ -37,9 +37,9 @@ class PackagingController extends Controller
         foreach ($blocks as $block) {
             $node = $block->getNode();
 
-            if ($node == null || !$node->isUsed()) {
-                continue;
-            }
+            // if ($node == null || !$node->isUsed()) {
+            //     continue;
+            // }
 
             array_push($result, [
                 'x' => $node->getX(),
