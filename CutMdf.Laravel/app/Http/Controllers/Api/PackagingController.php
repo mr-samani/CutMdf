@@ -8,11 +8,36 @@ use Padam87\BinPacker\BinPacker;
 use Padam87\BinPacker\Model\Bin;
 use Padam87\BinPacker\Model\Block;
 use Padam87\BinPacker\Visualizer;
+use BinPacking\RectangleBinPack;
+use BinPacking\Rectangle;
+
 
 //https://github.com/Padam87/bin-packer
 class PackagingController extends Controller
 {
+
     public function packing()
+    {
+
+        $bin = (new RectangleBinPack(1000, 1000))->init();
+        $result=[];
+        for ($i = 0; $i < 10; $i++) {
+            $packed = $bin->insert(new Rectangle(random_int(100,500),random_int(100,200)), "RectBestAreaFit");
+            array_push($result, [
+                'x' => $packed->getX(),
+                'y' => $packed->getY(),
+                'width' => $packed->getWidth(),
+                'height' => $packed->getHeight(),
+            ]);
+        }
+        return $result;
+    }
+
+
+
+
+
+    public function packing1()
     {
         $bin = new Bin(1000, 1000);
         $blocks = [
@@ -26,7 +51,7 @@ class PackagingController extends Controller
         $packer = new BinPacker();
 
         $blocks = $packer->pack($bin, $blocks);
-//dd($blocks);
+        //dd($blocks);
         return response()->json($this->getJsonData($blocks));
     }
 

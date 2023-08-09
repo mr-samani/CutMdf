@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5b1371058b6796eb37cd41464fbb936",
+    "content-hash": "42f469405929508614a70e32f960d1f7",
     "packages": [
         {
             "name": "brick/math",
@@ -60,6 +60,50 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "dagmike/bin-packing",
+            "version": "1.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dagmike/BinPacking.git",
+                "reference": "191794f8b2e607c2de8e3addd636ab2c887b73e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dagmike/BinPacking/zipball/191794f8b2e607c2de8e3addd636ab2c887b73e6",
+                "reference": "191794f8b2e607c2de8e3addd636ab2c887b73e6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BinPacking\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Taylor",
+                    "email": "dagmike96@gmail.com"
+                },
+                {
+                    "name": "Shawn Welch",
+                    "email": "101164+shrimpwagon@users.noreply.github.com"
+                }
+            ],
+            "description": "2D bin packing PHP implementation",
+            "support": {
+                "issues": "https://github.com/dagmike/BinPacking/issues",
+                "source": "https://github.com/dagmike/BinPacking/tree/1.7.2"
+            },
+            "time": "2021-02-27T14:19:41+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
