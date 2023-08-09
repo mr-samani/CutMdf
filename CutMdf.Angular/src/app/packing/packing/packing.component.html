@@ -1,4 +1,17 @@
-<canvas #myCanvas width="1000" height="1000"></canvas>
+<select name="method" [(ngModel)]="method" (change)="getData()">
+    <option *ngFor="let item of  PackingMethod|enumToArrayStringValue">
+        {{item}}
+    </option>
+</select>
+<label>
+    <input [(ngModel)]="allowFlip" name="allowFlip" type="checkbox" />
+    allowFlip
+</label>
+
+<div>
+    <canvas #myCanvas width="1000" height="1000"></canvas>
+
+</div>
 
 
 <!-- <img src="http://127.0.0.1:2145/redirectImage" width="400"/> -->

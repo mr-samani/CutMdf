@@ -10,7 +10,9 @@ export class PackingService {
     }
 
 
-    public  getData(){
-        return this.http.get<any>('http://127.0.0.1:2145/api/packing');
+    public getData(params: any) {
+        return this.http.get<any>('http://127.0.0.1:2145/api/packing', {
+            params
+        });
     }
 }

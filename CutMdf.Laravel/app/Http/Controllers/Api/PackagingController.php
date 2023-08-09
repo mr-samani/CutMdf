@@ -16,11 +16,15 @@ use BinPacking\Rectangle;
 class PackagingController extends Controller
 {
     //https://www.cutlistoptimizer.com/
-
-    public function packing()
+    //https://opcut.kopic.xyz/index.html
+    public function packing(Request $request)
     {
+        $input = $request->all();
+        $method = $input['method'] ?? 'RectBestAreaFit';
+        $allowFlip = $input['allowFlip'] ?? true;
 
-        $bin = (new RectangleBinPack(1000, 1000, false))->init();
+        $bin = new RectangleBinPack(1000, 1000, $allowFlip);
+        $bin->init();
         $boxes = [
             (object)['width' => 250, 'height' => 100],
             (object)['width' => 800, 'height' => 80],
@@ -30,18 +34,18 @@ class PackagingController extends Controller
             (object)['width' => 250, 'height' => 100],
             (object)['width' => 140, 'height' => 85],
         ];
-        usort($boxes, function ($a, $b) {
-            if ($a->width < $b->width)
-                return 1;
-            else if ($a->width > $b->width)
-                return -1;
-            else
-                return 0;
-        });
+        // usort($boxes, function ($a, $b) {
+        //     if ($a->width < $b->width)
+        //         return 1;
+        //     else if ($a->width > $b->width)
+        //         return -1;
+        //     else
+        //         return 0;
+        // });
         $result = [];
         $index = 0;
         foreach ($boxes as $box) {
-            $packed = $bin->insert(new Rectangle($box->width, $box->height), "RectBottomLeftRule");
+            $packed = $bin->insert(new Rectangle($box->width, $box->height), $method);
             array_push($result, [
                 'x' => $packed->getX(),
                 'y' => $packed->getY(),

@@ -5,6 +5,8 @@ import { PackingRoutingModule } from './packing-routing.module';
 import { PackingComponent } from './packing/packing.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PackingService } from './packing/paking.service';
+import { SharedPipeModules } from '../Shared/pipe/shared-pipe.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { PackingService } from './packing/paking.service';
   imports: [
     CommonModule,
     PackingRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedPipeModules,
+    FormsModule
   ],
   providers: [
     PackingService
