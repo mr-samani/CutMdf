@@ -15,7 +15,7 @@ export class PackingComponent implements OnInit {
   ) {
 
   }
-
+//https://www.cutlistoptimizer.com/
   ngOnInit(): void {
     this.packingService.getData()
       .pipe(finalize(() => this.loading = false))
@@ -26,7 +26,10 @@ export class PackingComponent implements OnInit {
         rectangles.forEach((rect: any) => {
           if (ctx) {
             ctx.rect(rect.x, rect.y, rect.width, rect.height);
+            ctx.strokeStyle = '#039aad';
+            ctx.fillText(rect.index, rect.x + 10, rect.y + 10);
             ctx.stroke();
+          
           }
         });
       })

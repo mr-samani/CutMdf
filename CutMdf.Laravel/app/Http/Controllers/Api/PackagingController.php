@@ -15,19 +15,39 @@ use BinPacking\Rectangle;
 //https://github.com/Padam87/bin-packer
 class PackagingController extends Controller
 {
+    //https://www.cutlistoptimizer.com/
 
     public function packing()
     {
 
-        $bin = (new RectangleBinPack(1000, 1000))->init();
-        $result=[];
-        for ($i = 0; $i < 10; $i++) {
-            $packed = $bin->insert(new Rectangle(random_int(100,500),random_int(100,200)), "RectBestAreaFit");
+        $bin = (new RectangleBinPack(1000, 1000, false))->init();
+        $boxes = [
+            (object)['width' => 250, 'height' => 100],
+            (object)['width' => 800, 'height' => 80],
+            (object)['width' => 800, 'height' => 180],
+            (object)['width' => 100, 'height' => 85],
+            (object)['width' => 750, 'height' => 100],
+            (object)['width' => 250, 'height' => 100],
+            (object)['width' => 140, 'height' => 85],
+        ];
+        usort($boxes, function ($a, $b) {
+            if ($a->width < $b->width)
+                return 1;
+            else if ($a->width > $b->width)
+                return -1;
+            else
+                return 0;
+        });
+        $result = [];
+        $index = 0;
+        foreach ($boxes as $box) {
+            $packed = $bin->insert(new Rectangle($box->width, $box->height), "RectBottomLeftRule");
             array_push($result, [
                 'x' => $packed->getX(),
                 'y' => $packed->getY(),
                 'width' => $packed->getWidth(),
                 'height' => $packed->getHeight(),
+                'index' => $index++
             ]);
         }
         return $result;
